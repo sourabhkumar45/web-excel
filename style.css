@@ -65,6 +65,7 @@ body {
 }
 .address-bar {
   width: 5rem;
+  text-align: center;
 }
 .formula-icon {
   width: 1.2rem;
@@ -84,12 +85,15 @@ body {
 .top-left-dummy-cell {
   height: 2rem;
   width: 2rem;
+  position: fixed;
   background-color: #747d8c;
+  z-index: 2;
+  /* position is a mandotary property to apply z-index propertry*/
 }
 .address-col-container {
-  height: 10rem;
-  width: 2rem;
-  background-color: lightblue;
+  position: sticky;
+  left: 0;
+  top: 2rem;
 }
 .address-col {
   height: 2rem;
@@ -111,6 +115,19 @@ body {
 .address-row-container {
   text-align: center;
   display: flex;
+  position: sticky;
+  top: 0;
+  left: 2rem;
+  background-color: #ecf0f1;
+}
+.row-container {
+  display: flex;
+}
+.cell {
+  height: 2rem;
+  width: 5rem;
+  outline-color: #218c74;
+  border: 1px solid #dfe4ea;
 }
 /****************** sheet action container styling *****************/
 .sheet-action-container {
