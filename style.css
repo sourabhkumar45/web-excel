@@ -1,3 +1,4 @@
+/****************** General styling *****************/
 * {
   box-sizing: border-box;
 }
@@ -5,29 +6,138 @@
 body {
   padding: 0;
   margin: 0;
+  font-family: "Lato", sans-serif;
+  font-family: "Zen Kurenaido", sans-serif;
 }
+/****************** page action container styling *****************/
 .page-action-container {
   height: 3rem;
   background-color: #218c74;
   display: flex;
   align-items: flex-end;
+  padding-left: 1rem;
 }
 .page-action {
   margin: 0.5rem;
   color: #f1f2f6;
 }
+
+/****************** cell props action container styling *****************/
 .cellprops-action-container {
   height: 3rem;
-  background-color: lightsalmon;
+  background-color: #ecf0f1;
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
 }
+.cellprops-action-container > * {
+  display: inline-block;
+  margin: 0.5rem;
+}
+.cellprops-action-container > select {
+  border: none;
+  border-radius: 2px;
+  outline: none;
+}
+.font-family-prop {
+  padding: 0.2rem;
+}
+.font-size-prop {
+  padding: 0.2rem;
+}
+
+/****************** formula action container styling *****************/
 .formula-action-container {
-  height: 3rem;
+  height: 2rem;
+  background-color: #ecf0f1;
+  padding-left: 1rem;
+  display: flex;
+  align-items: center;
+}
+.formula-action-container > input {
+  border: none;
+  outline: none;
+  height: 70%;
+}
+.formula-action-container > * {
+  display: inline-block;
+  margin-right: 0.7rem;
+}
+.address-bar {
+  width: 5rem;
+}
+.formula-icon {
+  width: 1.2rem;
+}
+.formula-bar {
+  width: calc(100vw - 5rem - 0.7rem - 0.7rem - 0.7rem);
+}
+
+/****************** grid container styling *****************/
+.grid-container {
+  height: calc(100vh - 11rem);
+  position: relative;
+  /* this is necessary for cell-container to be absolute but relative to parent which is grid-container*/
+  overflow: auto;
+  background-color: #ecf0f1;
+}
+.top-left-dummy-cell {
+  height: 2rem;
+  width: 2rem;
+  background-color: #747d8c;
+}
+.address-col-container {
+  height: 10rem;
+  width: 2rem;
   background-color: lightblue;
 }
-.grid-container {
-  height: calc(100vh - 12rem);
+.address-col {
+  height: 2rem;
+  width: 2rem;
+  background-color: #ecf0f1;
+  text-align: center;
+  border: 1px solid #dfe4ea;
 }
+.address-row {
+  height: 2rem;
+  width: 5rem;
+  border: 1px solid #dfe4ea;
+}
+.cells-container {
+  position: absolute;
+  top: 0;
+  left: 2rem;
+}
+.address-row-container {
+  text-align: center;
+  display: flex;
+}
+/****************** sheet action container styling *****************/
 .sheet-action-container {
   height: 3rem;
-  background-color: lightcoral;
+  background-color: #ecf0f1;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.sheet-action-container > * {
+  display: inline-block;
+}
+.sheet-add-icon {
+  width: 2vw;
+}
+.sheet-folder-container {
+  height: 80%;
+  width: calc(100vw - 2vw);
+  background-color: yellow;
+  display: flex;
+  align-items: center;
+}
+.sheet-folder {
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-decoration-thickness: 3px;
 }

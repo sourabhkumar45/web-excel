@@ -8,6 +8,12 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Zen+Kurenaido&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./style.css" />
     <title>Web Excel</title>
   </head>
@@ -42,9 +48,29 @@
       ><span class="material-icons"> format_align_center </span
       ><span class="material-icons"> format_align_right </span>
     </div>
-    <div class="formula-action-container"></div>
-    <div class="grid-container"></div>
-    <div class="sheet-action-container"></div>
-    <script src="./script.js"></script>
+    <div class="formula-action-container">
+      <input type="text" readonly class="address-bar" />
+      <img
+        src="https://img.icons8.com/ios/50/000000/formula-fx.png"
+        class="formula-icon"
+      />
+      <input type="text" class="formula-bar" />
+    </div>
+    <div class="grid-container">
+      <div class="top-left-dummy-cell"></div>
+      <div class="address-col-container"></div>
+      <div class="cells-container">
+        <div class="address-row-container"></div>
+      </div>
+    </div>
+    <div class="sheet-action-container">
+      <div class="sheet-add-icon">
+        <span class="material-icons"> post_add </span>
+      </div>
+      <div class="sheet-folder-container">
+        <div class="sheet-folder">Sheet1</div>
+      </div>
+    </div>
+    <script src="./scripts/script.js"></script>
   </body>
 </html>
