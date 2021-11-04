@@ -1,6 +1,7 @@
 /****************** General styling *****************/
 * {
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 body {
@@ -105,6 +106,7 @@ body {
 .address-row {
   height: 2rem;
   width: 5rem;
+
   border: 1px solid #dfe4ea;
 }
 .cells-container {
@@ -126,6 +128,8 @@ body {
 .cell {
   height: 2rem;
   width: 5rem;
+  overflow: auto;
+  outline-style: none;
   outline-color: #218c74;
   border: 1px solid #dfe4ea;
 }

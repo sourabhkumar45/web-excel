@@ -38,6 +38,8 @@ for (let i = 0; i < rows; i++) {
     let cell = document.createElement("div");
     cell.setAttribute("class", "cell");
     cell.setAttribute("contentEditable", true);
+    cell.setAttribute("rid", i);
+    cell.setAttribute("cid", j);
     // adding event listenter for displaying cell address on address bar on click
 
     addListenerForAddressBarDisplay(cell, i, j);
