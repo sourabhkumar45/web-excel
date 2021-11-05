@@ -6,8 +6,6 @@
 body {
   padding: 0;
   margin: 0;
-  /* font-family: "Lato", sans-serif;
-  font-family: "Zen Kurenaido", sans-serif; */
 }
 /****************** page action container styling *****************/
 .page-action-container {
@@ -38,6 +36,9 @@ body {
   border: none;
   border-radius: 2px;
   outline: none;
+}
+.cellprops-action-container > *:hover {
+  cursor: pointer;
 }
 .font-family-prop {
   padding: 0.2rem;
@@ -138,9 +139,12 @@ body {
 .cell {
   height: 2rem;
   width: 5rem;
-  overflow: auto;
+  overflow-x: scroll;
   outline-color: #218c74;
   border: 1px solid #dfe4ea;
+}
+.cell::-webkit-scrollbar {
+  display: none;
 }
 /****************** sheet action container styling *****************/
 .sheet-action-container {
