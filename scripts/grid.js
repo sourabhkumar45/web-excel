@@ -12,6 +12,8 @@ let addressRowCont = document.querySelector(".address-row-container");
 
 let cellCont = document.querySelector(".cells-container");
 let addressBar = document.querySelector(".address-bar");
+// necessary to access cell in the matrix DB and UI and will help in accessing the active cell for two
+// way binding
 
 /******************************************************/
 //adding column container on the left side
