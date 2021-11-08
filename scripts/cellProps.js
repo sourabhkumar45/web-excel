@@ -1,4 +1,5 @@
 // This file define how we represent a cell and its properties as a javascript object
+"use strict";
 
 // creating the 2d array to store cell props to corresponding co-ordinates
 let sheetDB = [];
@@ -7,6 +8,8 @@ for (let i = 0; i < rows; i++) {
   let sheetRow = [];
   for (let j = 0; j < cols; j++) {
     let cellProps = {
+      value: "",
+      formula: "",
       bold: false,
       italic: false,
       underline: false,
@@ -54,7 +57,7 @@ firstCell.click();
 //bold propertry
 bold.addEventListener("click", (e) => {
   let address = addressBar.value;
-  let [cell, cellProp] = activeCell(address);
+  let [cell, cellProp] = getCellAndProps(address);
   // modification in the sheetDB
   cellProp.bold = !cellProp.bold;
   cell.style.fontWeight = cellProp.bold ? "bold" : "normal"; //actual change in props of a cell
@@ -66,7 +69,7 @@ bold.addEventListener("click", (e) => {
 //italic propertry
 italic.addEventListener("click", () => {
   let address = addressBar.value;
-  let [cell, cellProp] = activeCell(address);
+  let [cell, cellProp] = getCellAndProps(address);
   // modification in the sheetDB
   cellProp.italic = !cellProp.italic;
   cell.style.fontStyle = cellProp.italic ? "italic" : "normal"; //actual change in props of a cell
@@ -78,7 +81,7 @@ italic.addEventListener("click", () => {
 //underline propertry
 underline.addEventListener("click", () => {
   let address = addressBar.value;
-  let [cell, cellProp] = activeCell(address);
+  let [cell, cellProp] = getCellAndProps(address);
   // modification in the sheetDB
   cellProp.underline = !cellProp.underline;
   cell.style.textDecoration = cellProp.underline ? "underline" : "none"; //actual change in props of a cell
@@ -90,7 +93,7 @@ underline.addEventListener("click", () => {
 //font size propertry
 fontSize.addEventListener("change", () => {
   let address = addressBar.value;
-  let [cell, cellProp] = activeCell(address);
+  let [cell, cellProp] = getCellAndProps(address);
 
   //change in DB
   cellProp.fontSize = fontSize.value;
@@ -103,7 +106,7 @@ fontSize.addEventListener("change", () => {
 //font-family propertry
 fontFamily.addEventListener("change", () => {
   let address = addressBar.value;
-  let [cell, cellProp] = activeCell(address);
+  let [cell, cellProp] = getCellAndProps(address);
 
   //change in DB
   cellProp.fontFamily = fontFamily.value;
@@ -116,7 +119,7 @@ fontFamily.addEventListener("change", () => {
 //font-color properties
 fontColor.addEventListener("change", () => {
   let address = addressBar.value;
-  let [cell, cellProp] = activeCell(address);
+  let [cell, cellProp] = getCellAndProps(address);
 
   //change in DB
   cellProp.fontColor = fontColor.value;
@@ -129,7 +132,7 @@ fontColor.addEventListener("change", () => {
 // background-color propertry
 bgColor.addEventListener("change", () => {
   let address = addressBar.value;
-  let [cell, cellProp] = activeCell(address);
+  let [cell, cellProp] = getCellAndProps(address);
   //change in DB
   cellProp.bgColor = bgColor.value;
 
@@ -142,7 +145,7 @@ bgColor.addEventListener("change", () => {
 alignment.forEach((alignElement) => {
   alignElement.addEventListener("click", (e) => {
     let address = addressBar.value;
-    let [cell, cellProp] = activeCell(address);
+    let [cell, cellProp] = getCellAndProps(address);
 
     let alignVal = e.target.classList[2];
     //change in DB
@@ -214,8 +217,9 @@ allCells.forEach((cell) => {
   });
 });
 
-// returns the array containing the cell HTML element and corresponding cell prop object from sheetDB
-function activeCell(address) {
+// returns the array containing the cell whose address is passed (not necessary the cell on which green border is active)
+// HTML element and corresponding cell prop object from sheetDB
+function getCellAndProps(address) {
   let [rid, cid] = getRidCidFromAddress(address);
   //Access cell and storage Object
   let cell = document.querySelector(`.cell[rid='${rid}'][cid='${cid}']`);
