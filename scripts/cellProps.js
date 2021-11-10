@@ -18,6 +18,7 @@ for (let i = 0; i < rows; i++) {
       fontSize: "14",
       fontColor: "#000000",
       bgColor: "#ecf0f1",
+      children: [],
     };
 
     sheetRow.push(cellProps);
@@ -25,7 +26,7 @@ for (let i = 0; i < rows; i++) {
   sheetDB.push(sheetRow);
 }
 
-// Selectors for cell props
+// Selectors
 let allCells = document.querySelectorAll(".cell");
 let bold = document.querySelector(".bold");
 let italic = document.querySelector(".italic");
@@ -35,6 +36,7 @@ let fontFamily = document.querySelector(".font-family-prop");
 let bgColor = document.querySelector(".bg-color-prop");
 let fontColor = document.querySelector(".font-color-prop");
 let alignment = document.querySelectorAll(".alignment");
+let formulaBar = document.querySelector(".formula-bar");
 let leftAlign = alignment[0];
 let centerAlign = alignment[1];
 let rightAlign = alignment[2];
@@ -214,12 +216,23 @@ allCells.forEach((cell) => {
         rightAlign.style.backgroundColor = activeColorProp;
         break;
     }
+    // update the formula bar to display active cell formula for each cell
+    formulaBar.value = cellProp.formula;
   });
 });
 
 // returns the array containing the cell whose address is passed (not necessary the cell on which green border is active)
 // HTML element and corresponding cell prop object from sheetDB
 function getCellAndProps(address) {
+  if (
+    address.charCodeAt(0) < 65 ||
+    address.charCodeAt(0) > 90 ||
+    address[1] > 100 ||
+    address[1] < 1
+  ) {
+    throw new Error("not a valid address");
+    return;
+  }
   let [rid, cid] = getRidCidFromAddress(address);
   //Access cell and storage Object
   let cell = document.querySelector(`.cell[rid='${rid}'][cid='${cid}']`);
