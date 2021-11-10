@@ -10,10 +10,14 @@ body {
 /****************** page action container styling *****************/
 .page-action-container {
   height: 3rem;
-  background-color: #218c74;
+  background-color: #367c42;
   display: flex;
   align-items: flex-end;
   padding-left: 1rem;
+  font-family: "Montserrat", sans-serif;
+  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto", sans-serif;
+  font-family: "Zen Kurenaido", sans-serif;
 }
 .page-action {
   margin: 0.5rem;
@@ -113,12 +117,27 @@ body {
   background-color: #ecf0f1;
   text-align: center;
   border: 1px solid #dfe4ea;
+  font-family: "Montserrat", sans-serif;
+  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto", sans-serif;
+  font-family: "Zen Kurenaido", sans-serif;
 }
+.address-col:hover {
+  background-color: #d3f0e0;
+}
+
 .address-row {
   height: 2rem;
   width: 5rem;
+  font-family: "Montserrat", sans-serif;
+  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto", sans-serif;
+  font-family: "Zen Kurenaido", sans-serif;
 
   border: 1px solid #dfe4ea;
+}
+.address-row:hover {
+  background-color: #d3f0e0;
 }
 .cells-container {
   position: absolute;

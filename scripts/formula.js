@@ -38,6 +38,15 @@
 // ---> and user updates the value at A1
 // ---> so we need to update B1 and its child dependency as B1 is child dependency of A1
 
+// **************************CYCLE DETECTION**************************
+// --> there can be cycle among cells for e.g. suppose the following formulae
+// ---> B1=(A1+10); C1=(B1+10); A1=(C1+10);
+// ---> now, suppose we we change the formula at B1=(A1*10), this will cause C1 to change and change in C1 will cause A1 to change
+// ---> and change in A1 will change B1, which will again change C1 and then A1, this will continue infinitely and will cause stack overflow
+// ---> as the relationship among cell is of Directed graph, we must ensure there is no cycle in it to avoid this kind of senarios.
+// ---> the Data-structure used to implement formulas is DAG(Directed Acyclic graphs)
+//There are one or more circular references where a formula refers to its own cell either directly or indirectly. This might cause them to calculate incorrectly
+
 for (let i = 0; i < rows; i++) {
   for (let j = 0; j < cols; j++) {
     let cell = document.querySelector(`.cell[rid='${i}'][cid='${j}']`);
