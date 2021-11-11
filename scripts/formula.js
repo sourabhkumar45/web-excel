@@ -95,10 +95,10 @@ formulaBar.addEventListener("keydown", (e) => {
 
         //clear the formula bar
         formulaBar.value = "";
-        
+
         //alert
         alert(
-          "There are one or more circular references where a formula refers to its own cell either directly or indirectly. This might cause them to calculate incorrectly"
+          "There are one or more circular references where a formula refers to its own cell either directly or indirectly. This might cause them to calculate incorrectly."
         );
         return;
       }
