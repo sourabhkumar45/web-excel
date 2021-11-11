@@ -81,14 +81,38 @@ formulaBar.addEventListener("keydown", (e) => {
 
     // there is change in formula we need to remove previous parent child relationship and add new parent child relationship
     if (inputFormula !== cellProp.formula) {
+      // remove previous formula dependency
       removeChildFromParent(cellProp.formula);
+
+      //add child dependency to graph representation
+      addChildToGraphComponent(inputFormula, address);
+
       // evaluate the value
+      let isCyclic = isCyclePresent(graphComponenthMatrix);
+      if (isCyclic) {
+        // remove the dependecy pushed in line no. 88
+        removeChildFromGraphComponent(inputFormula);
+
+        //clear the formula bar
+        formulaBar.value = "";
+        
+        //alert
+        alert(
+          "There are one or more circular references where a formula refers to its own cell either directly or indirectly. This might cause them to calculate incorrectly"
+        );
+        return;
+      }
       let evaluatedValue = evaluateFormula(formula);
 
       // set the UI,database and parent child relation ship only when evaluatedValue is true value (valid answer)
       if (evaluatedValue) {
+        // update UI and DB
         setCellUIandCellProps(evaluatedValue, inputFormula, address);
+
+        // development of dependency array
         addChildToParent(inputFormula);
+
+        // update child when parents update
         updateChildCells(address);
       }
     }
@@ -208,4 +232,38 @@ function setCellUIandCellProps(evaluatedValue, formula, address) {
   // DB update
   cellProps.value = String(evaluatedValue);
   cellProps.formula = formula;
+}
+
+// function to add cell co-ordinates to graph 2d matrix
+function removeChildFromGraphComponent(formula) {
+  let encodedFormala = formula.replaceAll(" ", "");
+
+  for (let i = 0; i < encodedFormala.length; i++) {
+    let asciiValue = encodedFormala.charCodeAt(i);
+    if (asciiValue >= 65 && asciiValue <= 90) {
+      let parentAddress = encodedFormala[i] + encodedFormala[i + 1];
+      let [pRid, pCid] = getRidCidFromAddress(parentAddress); // parent col and row id
+      // rid -> i cid -> j
+
+      // cycle has been detected remove the wrongly pushed children which was pushed previously
+      graphComponenthMatrix[pRid][pCid].pop();
+    }
+  }
+}
+
+// function to add cell co-ordinates to graph 2d matrix
+
+function addChildToGraphComponent(formula, childAddress) {
+  let [cRid, cCid] = getRidCidFromAddress(childAddress); // child's row and col id
+  let encodedFormala = formula.replaceAll(" ", "");
+
+  for (let i = 0; i < encodedFormala.length; i++) {
+    let asciiValue = encodedFormala.charCodeAt(i);
+    if (asciiValue >= 65 && asciiValue <= 90) {
+      let parentAddress = encodedFormala[i] + encodedFormala[i + 1];
+      let [pRid, pCid] = getRidCidFromAddress(parentAddress); // parent col and row id
+      // rid -> i cid -> j
+      graphComponenthMatrix[pRid][pCid].push([cRid, cCid]); // making directed edge frome parent to child
+    }
+  }
 }
