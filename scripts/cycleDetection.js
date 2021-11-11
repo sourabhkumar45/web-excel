@@ -33,8 +33,10 @@ function isCyclePresent() {
   // cycle detection
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
-      let cycle = dfs(i, j, visited, dfsVisited);
-      if (cycle) return true;
+      if (!visited[i][j]) {
+        let cycle = dfs(i, j, visited, dfsVisited);
+        if (cycle) return true;
+      }
     }
   }
   return false;
