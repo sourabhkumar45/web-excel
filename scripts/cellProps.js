@@ -1,30 +1,34 @@
 // This file define how we represent a cell and its properties as a javascript object
 "use strict";
 
+// this array stores the sheetsDB
+let collectedSheetDB = [];
+
 // creating the 2d array to store cell props to corresponding co-ordinates
 let sheetDB = [];
 
-for (let i = 0; i < rows; i++) {
-  let sheetRow = [];
-  for (let j = 0; j < cols; j++) {
-    let cellProps = {
-      value: "",
-      formula: "",
-      bold: false,
-      italic: false,
-      underline: false,
-      alignment: "left",
-      fontFamily: "monospace",
-      fontSize: "14",
-      fontColor: "#000000",
-      bgColor: "#ecf0f1",
-      children: [],
-    };
+// commented because this was applicable for single sheet only
+// for (let i = 0; i < rows; i++) {
+//   let sheetRow = [];
+//   for (let j = 0; j < cols; j++) {
+//     let cellProps = {
+//       value: "",
+//       formula: "",
+//       bold: false,
+//       italic: false,
+//       underline: false,
+//       alignment: "left",
+//       fontFamily: "monospace",
+//       fontSize: "14",
+//       fontColor: "#000000",
+//       bgColor: "#ecf0f1",
+//       children: [],
+//     };
 
-    sheetRow.push(cellProps);
-  }
-  sheetDB.push(sheetRow);
-}
+//     sheetRow.push(cellProps);
+//   }
+//   sheetDB.push(sheetRow);
+// }
 
 // Selectors
 let allCells = document.querySelectorAll(".cell");

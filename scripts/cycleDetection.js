@@ -1,16 +1,20 @@
 // This file contains implementation of cycle dependency identication in the formuala
 
+// stores all the graphComponentMatrix
+
+let collectedGraphComponentMatrix = [];
 // storage for graph represenation of cells
 let graphComponenthMatrix = [];
 
-for (let i = 0; i < rows; i++) {
-  let row = [];
-  for (let j = 0; j < cols; j++) {
-    // more than one child relation
-    row.push([]);
-  }
-  graphComponenthMatrix.push(row);
-}
+// commented because this was applicable for single sheet only
+// for (let i = 0; i < rows; i++) {
+//   let row = [];
+//   for (let j = 0; j < cols; j++) {
+//     // more than one child relation
+//     row.push([]);
+//   }
+//   graphComponenthMatrix.push(row);
+// }
 
 function isCyclePresent() {
   // dependency --> visited, dfsVisited

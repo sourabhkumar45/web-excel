@@ -7,6 +7,9 @@ body {
   padding: 0;
   margin: 0;
 }
+body::-webkit-scrollbar {
+  display: none;
+}
 /****************** page action container styling *****************/
 .page-action-container {
   height: 3rem;
@@ -98,6 +101,9 @@ body {
   overflow: auto;
   background-color: #ecf0f1;
 }
+.grid-container::-webkit-scrollbar {
+  display: none;
+}
 .top-left-dummy-cell {
   height: 2rem;
   width: 2rem;
@@ -180,17 +186,28 @@ body {
 }
 .sheet-add-icon {
   width: 2vw;
+  cursor: pointer;
 }
+
 .sheet-folder-container {
   height: 80%;
   width: calc(100vw - 2vw);
-  background-color: yellow;
+  background-color: #ecf0f1;
   display: flex;
   align-items: center;
 }
+.sheet-content {
+  width: 5rem;
+}
 .sheet-folder {
+  height: 80%;
   text-decoration: underline;
   font-weight: bold;
   font-size: 0.9rem;
   text-decoration-thickness: 3px;
+  background-color: lightblue;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
