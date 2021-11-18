@@ -2,9 +2,9 @@
 
 // stores all the graphComponentMatrix
 
-let collectedGraphComponentMatrix = [];
+
 // storage for graph represenation of cells
-let graphComponenthMatrix = [];
+
 
 // commented because this was applicable for single sheet only
 // for (let i = 0; i < rows; i++) {

@@ -205,7 +205,6 @@ body::-webkit-scrollbar {
   font-weight: bold;
   font-size: 0.9rem;
   text-decoration-thickness: 3px;
-  background-color: lightblue;
   text-align: center;
   display: flex;
   justify-content: center;

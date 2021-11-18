@@ -1,12 +1,16 @@
 // This file define how we represent a cell and its properties as a javascript object
 "use strict";
 
+{
+  const addSheetBtn = document.querySelector(".sheet-add-icon");
+  addSheetBtn.click(); // adding 1 sheet by default
+
+  handleSheetProperties();
+}
+
 // this array stores the sheetsDB
-let collectedSheetDB = [];
 
 // creating the 2d array to store cell props to corresponding co-ordinates
-let sheetDB = [];
-
 // commented because this was applicable for single sheet only
 // for (let i = 0; i < rows; i++) {
 //   let sheetRow = [];
@@ -29,7 +33,7 @@ let sheetDB = [];
 //   }
 //   sheetDB.push(sheetRow);
 // }
-
+console.log(sheetDB);
 // Selectors
 let allCells = document.querySelectorAll(".cell");
 let bold = document.querySelector(".bold");
@@ -103,10 +107,10 @@ fontSize.addEventListener("change", () => {
 
   //change in DB
   cellProp.fontSize = fontSize.value;
-  cell.style.fontSize = cellProp.fontSize + "px";
 
   //change in UI
   fontSize.value = cellProp.fontSize;
+  cell.style.fontSize = cellProp.fontSize + "px";
 });
 
 //font-family propertry
@@ -185,7 +189,6 @@ allCells.forEach((cell) => {
     let address = addressBar.value;
     let [rid, cid] = getRidCidFromAddress(address);
     let cellProp = sheetDB[rid][cid];
-
     // apply active/inactive properties to the cell props container
     bold.style.backgroundColor = cellProp.bold
       ? activeColorProp
@@ -202,7 +205,7 @@ allCells.forEach((cell) => {
     fontSize.value = cellProp.fontSize;
     fontFamily.value = cellProp.fontFamily;
     fontColor.value = cellProp.fontColor;
-    bgColor.value = cellProp.fontColor;
+    bgColor.value = cellProp.bgColor;
     switch (cellProp.alignment) {
       case "left":
         leftAlign.style.backgroundColor = activeColorProp;
