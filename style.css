@@ -109,13 +109,15 @@ body::-webkit-scrollbar {
   width: 2rem;
   position: fixed;
   background-color: #747d8c;
-  z-index: 2;
+  z-index: 3;
   /* position is a mandotary property to apply z-index propertry*/
 }
 .address-col-container {
   position: sticky;
   left: 0;
+  z-index: 2;
   top: 2rem;
+  width: 2rem;
 }
 .address-col {
   height: 2rem;

@@ -33,7 +33,6 @@
 //   }
 //   sheetDB.push(sheetRow);
 // }
-console.log(sheetDB);
 // Selectors
 let allCells = document.querySelectorAll(".cell");
 let bold = document.querySelector(".bold");
