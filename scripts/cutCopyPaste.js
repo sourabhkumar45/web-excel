@@ -81,18 +81,30 @@ function handleBorders(startRid, startCid, endRid, endCid, color) {
   //   console.log("Col range is ", startCol, " to ", endCol);
   for (let i = startCol; i <= endCol; i++) {
     let cell = document.querySelector(`.cell[rid='${startRow}'][cid='${i}']`);
-    cell.style.borderTop = color == "none" ? color : `2px solid ${color}`;
+    cell.style.borderTop =
+      color == "none"
+        ? "0.001px solid rgb(230, 230, 230)"
+        : `2px solid ${color}`;
   }
   for (let i = startRow; i <= endRow; i++) {
     let cell = document.querySelector(`.cell[rid='${i}'][cid='${startCol}']`);
-    cell.style.borderLeft = color == "none" ? color : `2px solid ${color}`;
+    cell.style.borderLeft =
+      color == "none"
+        ? "0.001px solid rgb(230, 230, 230)"
+        : `2px solid ${color}`;
   }
   for (let i = startRow; i <= endRow; i++) {
     let cell = document.querySelector(`.cell[rid='${i}'][cid='${endCol}']`);
-    cell.style.borderRight = color == "none" ? color : `2px solid ${color}`;
+    cell.style.borderRight =
+      color == "none"
+        ? "0.001px solid rgb(230, 230, 230)"
+        : `2px solid ${color}`;
   }
   for (let i = startCol; i <= endCol; i++) {
     let cell = document.querySelector(`.cell[rid='${endRow}'][cid='${i}']`);
-    cell.style.borderBottom = color == "none" ? color : `2px solid ${color}`;
+    cell.style.borderBottom =
+      color == "none"
+        ? "0.001px solid rgb(230, 230, 230)"
+        : `2px solid ${color}`;
   }
 }

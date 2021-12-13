@@ -51,7 +51,7 @@ function createSheetDB() {
         fontFamily: "monospace",
         fontSize: "14",
         fontColor: "#000000",
-        bgColor: "white",
+        bgColor: "#FFFFFF",
         children: [],
       };
 

@@ -169,7 +169,7 @@ body::-webkit-scrollbar {
   overflow-x: scroll;
   outline-color: #218c74;
   border: 0.001px solid rgb(230, 230, 230);
-  background-color: white;
+  background-color: #ffffff;
 }
 .cell:hover {
   cursor: cell;
