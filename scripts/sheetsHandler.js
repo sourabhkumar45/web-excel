@@ -51,7 +51,7 @@ function createSheetDB() {
         fontFamily: "monospace",
         fontSize: "14",
         fontColor: "#000000",
-        bgColor: "#ecf0f1",
+        bgColor: "white",
         children: [],
       };
 
@@ -127,7 +127,6 @@ function handleSheetUI(sheet) {
 
 function handleSheetRemoval(sheet) {
   sheet.addEventListener("mousedown", (e) => {
-   
     if (e.button == "2") {
       // right click
       let allSheetsFolder = document.querySelectorAll(".sheet-folder");
