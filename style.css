@@ -16,15 +16,26 @@ body::-webkit-scrollbar {
   background-color: #367c42;
   display: flex;
   align-items: flex-end;
-  padding-left: 1rem;
   font-family: sans-serif;
 }
+.page-action.active {
+  background-color: #ecf0f1;
+  color: #229e5a !important;
+}
+
 .page-action {
-  margin: 0.5rem;
+  margin-bottom: 0rem;
+  padding: 8px;
+  padding-bottom: 15px;
   color: #f1f2f6;
 }
+.page-action.active:hover {
+  background-color: #ecf0f1 !important;
+  color: #229e5a !important;
+}
 .page-action:hover {
-  background-color: #d3f0e0;
+  background-color: #195534;
+  color: #ecf0f1;
 }
 
 /****************** cell props action container styling *****************/
@@ -33,6 +44,7 @@ body::-webkit-scrollbar {
   background-color: #ecf0f1;
   display: flex;
   align-items: center;
+  color: rgb(65, 64, 64);
   padding-left: 1rem;
 }
 .cellprops-action-container > * {
@@ -182,6 +194,7 @@ body::-webkit-scrollbar {
   height: 3rem;
   background-color: #ecf0f1;
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 1rem;
   padding-left: 0.5rem;

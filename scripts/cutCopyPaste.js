@@ -1,4 +1,8 @@
 let shiftPressed = false;
+let startcellSelected = false;
+//let isSelecting = false;
+let startCell = {};
+let endCell = {};
 
 let rangeStorage = [];
 let grid = document.querySelector(".grid-container");
@@ -16,7 +20,17 @@ for (let i = 0; i < rows; i++) {
     handleSelectedCell(cell);
   }
 }
-
+function selectCellBetween(startCell, endCell) {
+  handleBorders(
+    startCell.rowId,
+    startCell.colId,
+    endCell.rowId,
+    endCell.colId,
+    "#218c74"
+  );
+}
+let isSelecting = false;
+let startRid, startCid, endRid, endCid, prevRid, prevCid;
 function handleSelectedCell(cell) {
   cell.addEventListener("click", (e) => {
     // Select cells range word
@@ -48,28 +62,25 @@ function handleSelectedCell(cell) {
 }
 
 // below commented code is to add border to selected cell while user move mouse
-// let isSelecting = false;
-// let startRid, startCid, endRid, endCid;
-// grid.addEventListener("mousedown", (e) => {
-//   startRid = Number(e.target.getAttribute("rid"));
-//   startCid = Number(e.target.getAttribute("cid"));
-//   console.log(startRid, startCid);
-//   isSelecting = true;
-// });
 
-// grid.addEventListener("mousemove", (e) => {
-//   if (isSelecting == true) {
-//     e.target.style.backgroundColor = "red";
-//   }
-// });
+grid.addEventListener("mousedown", (e) => {
+  if (isSelecting == true) {
+    isSelecting = false;
+    handleBorders(startRid, startCid, endRid, endCid, "none");
+    return;
+  }
+  startRid = Number(e.target.getAttribute("rid"));
+  startCid = Number(e.target.getAttribute("cid"));
+  isSelecting = true;
+});
 
-// grid.addEventListener("mouseup", (e) => {
-//   endRid = Number(e.target.getAttribute("rid"));
-//   endCid = Number(e.target.getAttribute("cid"));
-//   console.log(endRid, endCid);
-//   makeBorders(startRid, startCid, endRid, endCid, "#218c74");
-//   isSelecting = false;
-// });
+grid.addEventListener("mouseup", (e) => {
+  if (isSelecting) {
+    endRid = Number(e.target.getAttribute("rid"));
+    endCid = Number(e.target.getAttribute("cid"));
+    handleBorders(startRid, startCid, endRid, endCid, "#218c74");
+  }
+});
 
 // function to add or remove borders from selected cell
 function handleBorders(startRid, startCid, endRid, endCid, color) {
@@ -77,34 +88,32 @@ function handleBorders(startRid, startCid, endRid, endCid, color) {
   let endRow = Math.max(startRid, endRid);
   let startCol = Math.min(startCid, endCid);
   let endCol = Math.max(startCid, endCid);
-  //   console.log("Row range is ", startRow, " to ", endRow);
-  //   console.log("Col range is ", startCol, " to ", endCol);
   for (let i = startCol; i <= endCol; i++) {
     let cell = document.querySelector(`.cell[rid='${startRow}'][cid='${i}']`);
     cell.style.borderTop =
       color == "none"
         ? "0.001px solid rgb(230, 230, 230)"
-        : `2px solid ${color}`;
+        : `0.001px solid ${color}`;
   }
   for (let i = startRow; i <= endRow; i++) {
     let cell = document.querySelector(`.cell[rid='${i}'][cid='${startCol}']`);
     cell.style.borderLeft =
       color == "none"
         ? "0.001px solid rgb(230, 230, 230)"
-        : `2px solid ${color}`;
+        : `0.001px solid ${color}`;
   }
   for (let i = startRow; i <= endRow; i++) {
     let cell = document.querySelector(`.cell[rid='${i}'][cid='${endCol}']`);
     cell.style.borderRight =
       color == "none"
         ? "0.001px solid rgb(230, 230, 230)"
-        : `2px solid ${color}`;
+        : `0.001px solid ${color}`;
   }
   for (let i = startCol; i <= endCol; i++) {
     let cell = document.querySelector(`.cell[rid='${endRow}'][cid='${i}']`);
     cell.style.borderBottom =
       color == "none"
         ? "0.001px solid rgb(230, 230, 230)"
-        : `2px solid ${color}`;
+        : `0.001px solid ${color}`;
   }
 }
