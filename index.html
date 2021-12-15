@@ -19,66 +19,68 @@
     <title>Web Excel</title>
   </head>
   <body>
-    <div class="page-action-container">
-      <div class="page-action">Files</div>
-      <div class="page-action active">Home</div>
-      <div class="page-action">Insert</div>
-      <div class="page-action">Layout</div>
-      <div class="page-action">Help</div>
-    </div>
-    <div class="cellprops-action-container">
-      <span class="material-icons"> content_copy </span>
-      <span class="material-icons"> content_cut </span>
-      <span class="material-icons"> content_paste </span>
-      <select class="font-family-prop">
-        <option value="monospace">monospace</option>
-        <option value="sans-serif">sans-serif</option>
-        <option value="fantasy">fantasy</option>
-        <option value="cursive">cursive</option>
-      </select>
-      <select class="font-size-prop">
-        <option value="14">14</option>
-        <option value="16">16</option>
-        <option value="18">18</option>
-        <option value="20">20</option>
-      </select>
-      <span class="material-icons bold"> format_bold </span>
-      <span class="material-icons italic"> format_italic </span>
-      <span class="material-icons underline"> format_underlined </span>
-      <span class="material-icons alignment left"> format_align_left </span
-      ><span class="material-icons alignment center">
-        format_align_center
-      </span>
-      <span class="material-icons alignment right"> format_align_right </span>
-      <div class="color-prop">
-        <span class="material-icons"> format_color_fill </span>
-        <input type="color" class="bg-color-prop" />
+    <div class="container">
+      <div class="page-action-container">
+        <div class="page-action">Files</div>
+        <div class="page-action active">Home</div>
+        <div class="page-action">Insert</div>
+        <div class="page-action">Layout</div>
+        <div class="page-action">Help</div>
       </div>
-      <div class="color-prop">
-        <span class="material-icons"> format_color_text </span>
-        <input type="color" class="font-color-prop" />
+      <div class="cellprops-action-container">
+        <span class="material-icons"> content_copy </span>
+        <span class="material-icons"> content_cut </span>
+        <span class="material-icons"> content_paste </span>
+        <select class="font-family-prop">
+          <option value="monospace">monospace</option>
+          <option value="sans-serif">sans-serif</option>
+          <option value="fantasy">fantasy</option>
+          <option value="cursive">cursive</option>
+        </select>
+        <select class="font-size-prop">
+          <option value="14">14</option>
+          <option value="16">16</option>
+          <option value="18">18</option>
+          <option value="20">20</option>
+        </select>
+        <span class="material-icons bold"> format_bold </span>
+        <span class="material-icons italic"> format_italic </span>
+        <span class="material-icons underline"> format_underlined </span>
+        <span class="material-icons alignment left"> format_align_left </span
+        ><span class="material-icons alignment center">
+          format_align_center
+        </span>
+        <span class="material-icons alignment right"> format_align_right </span>
+        <div class="color-prop">
+          <span class="material-icons"> format_color_fill </span>
+          <input type="color" class="bg-color-prop" />
+        </div>
+        <div class="color-prop">
+          <span class="material-icons"> format_color_text </span>
+          <input type="color" class="font-color-prop" />
+        </div>
       </div>
-    </div>
-    <div class="formula-action-container">
-      <input type="text" readonly class="address-bar" />
-      <img
-        src="https://img.icons8.com/ios/50/000000/formula-fx.png"
-        class="formula-icon"
-      />
-      <input type="text" class="formula-bar" />
-    </div>
-    <div class="grid-container">
-      <div class="top-left-dummy-cell"></div>
-      <div class="address-col-container"></div>
-      <div class="cells-container">
-        <div class="address-row-container"></div>
+      <div class="formula-action-container">
+        <input type="text" readonly class="address-bar" />
+        <img
+          src="https://img.icons8.com/ios/50/000000/formula-fx.png"
+          class="formula-icon"
+        />
+        <input type="text" class="formula-bar" />
       </div>
-    </div>
-    <div class="sheet-action-container">
-      <div class="sheet-add-icon">
-        <span class="material-icons"> post_add </span>
+      <div class="grid-container">
+        <div class="top-left-dummy-cell"></div>
+        <div class="address-col-container"></div>
+        <div class="cells-container">
+          <div class="address-row-container"></div>
+        </div>
       </div>
-      <div class="sheet-folder-container"></div>
+      <div class="sheet-action-container">
+        <div class="sheet-add-icon">
+          <span class="material-icons"> post_add </span>
+        </div>
+        <div class="sheet-folder-container"></div>
+      </div>
     </div>
     <script src="./scripts/grid.js"></script>
     <script src="./scripts//cycleDetection.js"></script>
@@ -86,5 +88,6 @@
     <script src="./scripts/cellProps.js"></script>
     <script src="./scripts/formula.js"></script>
     <script src="./scripts/cutCopyPaste.js"></script>
+    <script src="./scripts/newOpenSave.js"></script>
   </body>
 </html>
