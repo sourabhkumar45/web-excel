@@ -248,7 +248,7 @@ function getCellAndProps(address) {
 
 // function will return the decoded address from the string
 function getRidCidFromAddress(address) {
-  let rid = Number(address[1]) - 1;
+  let rid = Number(address.substring(1)) - 1;
   let cid = Number(address.charCodeAt(0)) - 65;
   return [rid, cid];
 }
