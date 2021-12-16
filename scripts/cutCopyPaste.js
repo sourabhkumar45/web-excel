@@ -122,19 +122,43 @@ function handleBorders(startRid, startCid, endRid, endCid, color) {
 let copyData = [];
 let prevCopyData = [];
 copyBtn.addEventListener("click", () => {
-  if (rangeStorage.length < 2) return;
-  copyData = [];
-  for (let i = rangeStorage[0][0]; i <= rangeStorage[1][0]; i++) {
-    let copyRow = [];
-    for (let j = rangeStorage[0][1]; j <= rangeStorage[1][1]; j++) {
-      let cellProps = sheetDB[i][j];
-      copyRow.push(cellProps);
-    }
-    copyData.push(copyRow);
-  }
+  prepareData();
 });
 
-cutBtn.addEventListener("click", () => {});
+cutBtn.addEventListener("click", () => {
+  prepareData();
+
+  for (let i = rangeStorage[0][0]; i <= rangeStorage[1][0]; i++) {
+    for (let j = rangeStorage[0][1]; j <= rangeStorage[1][1]; j++) {
+      let cell = document.querySelector(`.cell[rid='${i}'][cid='${j}']`);
+
+      let cellProp = sheetDB[i][j];
+      cellProp.value = "";
+      cellProp.formula = "";
+      cellProp.bold = false;
+      cellProp.italic = false;
+      cellProp.underline = false;
+      cellProp.fontSize = "14";
+      cellProp.fontFamily = "monospace";
+      cellProp.fontColor = "#000000";
+      cellProp.bgColor = "#FFFFFF";
+      cellProp.aligment = "left";
+      cellProp.children = [];
+      // do not create parent child relation
+
+      //change in UI
+      cell.innerText = cellProp.value;
+      cell.style.fontWeight = cellProp.bold ? "bold" : "normal";
+      cell.style.fontStyle = cellProp.italic ? "italic" : "normal";
+      cell.style.textDecoration = cellProp.underline ? "underline" : "none";
+      cell.style.fontSize = cellProp.fontSize + "px";
+      cell.style.fontFamily = cellProp.fontFamily;
+      cell.style.color = cellProp.fontColor;
+      cell.style.backgroundColor = cellProp.bgColor;
+      cell.style.textAlign = cellProp.alignment;
+    }
+  }
+});
 
 pasteBtn.addEventListener("click", () => {
   if (!copyData.length && !prevCopyData.length) return;
@@ -142,8 +166,11 @@ pasteBtn.addEventListener("click", () => {
   prevCopyData = copyData;
   let address = addressBar.value;
   let [sRid, sCid] = getRidCidFromAddress(address);
+
   // start paste action
-  if (sRid + copyData.length >= 100 || sCid + copyData[0].length >= 26) {
+
+  // is paste action possible
+  if (sRid + copyData.length > 100 || sCid + copyData[0].length > 26) {
     alert("Cannot perform paste action!! cells out of range");
     return;
   }
@@ -153,6 +180,7 @@ pasteBtn.addEventListener("click", () => {
       let data = copyData[r][c];
       let cellProp = sheetDB[i][j];
       cellProp.value = data.value;
+      cellProp.formula = data.formula;
       cellProp.bold = data.bold;
       cellProp.italic = data.italic;
       cellProp.underline = data.underline;
@@ -161,6 +189,7 @@ pasteBtn.addEventListener("click", () => {
       cellProp.fontColor = data.fontColor;
       cellProp.bgColor = data.bgColor;
       cellProp.aligment = data.aligment;
+      cellProp.children = [];
       // do not create parent child relation
 
       //change in UI
@@ -177,3 +206,29 @@ pasteBtn.addEventListener("click", () => {
   }
   copyData = [];
 });
+
+function prepareData() {
+  if (rangeStorage.length < 2) return;
+  copyData = [];
+  for (let i = rangeStorage[0][0]; i <= rangeStorage[1][0]; i++) {
+    let copyRow = [];
+    for (let j = rangeStorage[0][1]; j <= rangeStorage[1][1]; j++) {
+      let cellProps = sheetDB[i][j];
+      let obj = {
+        value: cellProps.value,
+        formula: "",
+        bold: cellProps.bold,
+        italic: cellProps.italic,
+        underline: cellProps.underline,
+        fontSize: cellProps.fontSize,
+        fontFamily: cellProps.fontFamily,
+        fontColor: cellProps.fontColor,
+        bgColor: cellProps.bgColor,
+        aligment: cellProps.aligment,
+        chidren: [],
+      };
+      copyRow.push(obj);
+    }
+    copyData.push(copyRow);
+  }
+}
