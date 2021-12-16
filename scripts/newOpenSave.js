@@ -43,3 +43,45 @@ function closeModal() {
     fileModal.style.width = "0vw";
   }, 400);
 }
+
+let downloadBtn = document.querySelector(".download");
+let openBtn = document.querySelector(".upload");
+
+downloadBtn.addEventListener("click", () => {
+  let data = JSON.stringify([sheetDB, graphComponenthMatrix]);
+  let file = new Blob([data], { type: "application/json" });
+  let a = document.createElement("a");
+  a.href = URL.createObjectURL(file);
+  a.download = "sheet1.json";
+  a.click();
+});
+
+//open file
+
+openBtn.addEventListener("click", (e) => {
+  let inputELe = document.querySelector("input");
+  inputELe.setAttribute("type", "file");
+  inputELe.click();
+
+  inputELe.addEventListener("change", (eve) => {
+    let fr = new FileReader();
+    let fileObj = inputELe.files[0];
+    fr.readAsText(fileObj);
+    fr.addEventListener("load", () => {
+      let res = JSON.parse(fr.result);
+      // basic sheet will be created
+      addSheetBtn.click();
+      // database setting
+      // collectedSheetDB and collectedGraphComponentMatrix is created after addSheetbtn is clicked
+
+      sheetDB = res[0];
+      graphComponenthMatrix = res[1];
+      collectedSheetDB[collectedSheetDB.length - 1] = sheetDB;
+      collectedGraphComponentMatrix[collectedGraphComponentMatrix.length - 1] =
+        graphComponenthMatrix;
+
+      //change the UI with new data
+      handleSheetProperties();
+    });
+  });
+});

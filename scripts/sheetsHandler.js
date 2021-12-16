@@ -25,6 +25,7 @@ addSheetBtn.addEventListener("click", (e) => {
 
   let sheetFolderContainer = document.querySelector(".sheet-folder-container");
   sheetFolderContainer.appendChild(sheet);
+  sheet.scrollIntoView(); // make new sheet Visible
   createSheetDB();
   createGraphComponentMatrix();
   handleSheetActiveness(sheet);

@@ -1,3 +1,5 @@
+// This file contains the implementation of cut copy and paste operations
+
 let grid = document.querySelector(".grid-container");
 let copyBtn = document.querySelector(".copy");
 let cutBtn = document.querySelector(".cut");

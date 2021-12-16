@@ -223,7 +223,12 @@ body::-webkit-scrollbar {
   width: calc(100vw - 2vw);
   background-color: #ecf0f1;
   display: flex;
+  overflow: scroll;
+
   align-items: center;
+}
+.sheet-folder-container::-webkit-scrollbar {
+  display: none;
 }
 .sheet-content {
   width: 5rem;
